@@ -1,0 +1,31 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+// android {
+//     compileSdkVersion 30
+
+//     defaultConfig {
+//         multiDexEnabled true // Add this line
+//     }
+// }
+
+// dependencies {
+//     implementation 'com.android.support:multidex:1.0.3'
+//     ...
+// }
